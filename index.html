@@ -5,41 +5,60 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="..\css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="icon" href="..\logo_ptrans.jpg">
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	  <a class="navbar-brand" href="C:\Users\shrey\Documents\GitHub\2048game\index.html"><img id="nav-img-m" src="..\logo_trans.jpg" height=30px width=30px></img>TheBeast5520's Website</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
+	<div class="container nav-container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <a class="navbar-brand" href=""><img id="nav-img-m" src="..\logo_trans.jpg" height=30px width=30px></img>TheBeast5520's Website</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
 
-	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item active">
-	        <a class="nav-link" href="">Home</a>
-	      </li>
-	      <li class="nav-item dropdown">
-	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          Games
-	        </a>
-	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	          <a class="dropdown-item" href="#">2048</a>
-	        </div>
-	      </li>
-	    </ul>
-	  </div>
-	</nav>
-
-	<div id="main-content">
-		<h1>TheBeast5520's Website</h1>
-		<h2>Choose a game from above to play</h2>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="">Home</a>
+		      </li>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Games
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="">2048</a>
+		        </div>
+		      </li>
+		    </ul>
+		  </div>
+		</nav>
 	</div>
 
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/script.js"></script>
+	<div id="main-content" class="container">
+		<div class = "jumbotron"><img src="..\logo_trans.jpg" class="img-responsive"></div>
+		<div class="shadow p-3 mb-5 bg-white rounded"><h2 id="game-selection-text">
+			Select a game and play!
+		</h2></div>
+		<div class="row">
+			<div class="card shadow rounded" style="width: 18rem;">
+			  <img src="..\placeholder.jpg" class="card-img-right">
+			  <div class="card-body">
+			    <h5 class="card-title">2048</h5>
+			    <p class="card-text">Click here to play 2048.</p>
+			    <a href="" class="btn btn-primary play-game">Play!</a>
+			  </div>
+		</div>
+		</div>
+	</div>
+	<div class="container">
+		<footer class="">
+			<div>&copy; 2020</div>
+		</footer>
+	</div>
+
+	<script src="..\js/jquery.min.js"></script>
+	<script src="..\js/bootstrap.min.js"></script>
+	<script src="..\js/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TheBeast5520</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="icon" href="../logo_ptrans.jpg">
+</head>
+<body>
+	<div class="container nav-container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <a class="navbar-brand" href="C:\Users\shrey\Documents\GitHub\2048game\index.html"><img id="nav-img-m" src="..\logo_trans.jpg" height=30px width=30px></img>TheBeast5520's Website</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="">Home</a>
+		      </li>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Games
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="#">2048</a>
+		        </div>
+		      </li>
+		    </ul>
+		  </div>
+		</nav>
+	</div>
+
+	<div id="main-content" class="container">
+
+		<h2 class="title">2048</h2>
+
+		<div class="accordion" id="accordian">
+		  <div class="card">
+		    <div class="card-header" id="headingOne">
+		      <h2 class="mb-0">
+		        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+		          How To Play
+		        </button>
+		      </h2>
+		    </div>
+
+		    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordian">
+		      <div class="card-body">
+		      	In 2048, on each turn, you have the option to move up, down, left, or right. Upon touch, two of the same tiles will merge. Every turn, a new 2 (or 4 with a 10% chance) will appear in the grid. You lose if you can no longer move up/down/left/right. You win if you reach the 2048 tile, though some people have gone above it.
+		      	<br><br>
+		        For computer, use the arrows on your keyboard (&uarr;, &darr;, &larr; &rarr;) to go up, down, left, or right. Alternatively, use buttons below 2048 grid.
+		      </div>
+		    </div>
+		  </div>
+		  <div class="card">
+		    <div class="card-header" id="headingTwo">
+		      <h2 class="mb-0">
+		        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+		          Leaderboard
+		        </button>
+		      </h2>
+		    </div>
+		    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordian">
+		      <div class="card-body">
+		        
+		      </div>
+		    </div>
+		  </div>
+	    </div>
+
+	    <div class = row id="grid-2048">
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-1"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-2"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-3"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-4"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-5"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-6"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-7"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-8"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-9"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-10"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-11"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-12"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-13"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-14"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-15"><div class="tile"></div></div></div>
+	    	<div class="col-3 margin-box"><div class="cell-2048" id="cell-16"><div class="tile"></div></div></div>
+	    </div>
+
+	    <div class="row" id="buttons">
+	    	<button type="button" class="btn btn-primary col-3" id="left">&#9666;</button>
+	    	<div class="row col-6">
+	    		<button type="button" class="btn btn-primary col-12" id="up">&#9650;</button>
+	    		<button type="button" class="btn btn-primary col-12" id="down">&#9660;</button>
+	    	</div>
+	    	<button type="button" class="btn btn-primary col-3" id="right">&#9656;</button>
+	    </div>
+	</div>
+
+	<div class="container">
+		<footer class="">
+			<div>
+				&copy; 2020
+			</div>
+		</footer>
+	</div>
+
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/script.js"></script>
+</body>
+</html>
