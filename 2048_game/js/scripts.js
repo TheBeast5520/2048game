@@ -1,9 +1,9 @@
 var i, j, k;
-var grid = [0, 0, 0, 0,
+var grid = [2, 16, 128, 1024,
             0, 0, 0, 0,
             0, 0, 0, 0,
             0, 0, 0, 0];
-var one_digit_size = 400;
+var one_digit_size = 375;
 var two_digit_size = 300;
 var three_digit_size = 275;
 var four_digit_size = 200;
@@ -30,27 +30,26 @@ var update_graphics = function() {
 			/* Set number */
 			document.querySelector("#cell-"+i+" .tile span").textContent = grid[i];
 			/* Set text-color & background color & fontsize */
-			var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-			var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+			var vw =  Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 			console.log(vw);
 			if (vw >= 992) {
 				if ((""+grid[i]) in colors) {
 					document.querySelector("#cell-"+i+" .tile span").style.color = colors[""+grid[i]][0];
-					document.querySelector("#cell-"+i+" .tile span").style.fontSize = "calc("+colors[""+grid[i]][2]+"%)";
+					document.querySelector("#cell-"+i+" .tile span").style.fontSize = "calc("+colors[""+grid[i]][2]+"vw/100)";
 					document.querySelector("#cell-"+i+" .tile").style.background = colors[""+grid[i]][1];
 				} else {
 					document.querySelector("#cell-"+i+" .tile span").style.color = colors["other"][0];
-					document.querySelector("#cell-"+i+" .tile span").style.fontSize = "calc("+colors["other"][2]+"%)";
+					document.querySelector("#cell-"+i+" .tile span").style.fontSize = "calc("+colors["other"][2]+"vw/100)";
 					document.querySelector("#cell-"+i+" .tile").style.background = colors["other"][1];
 				}
 			} else {
 				if ((""+grid[i]) in colors) {
 					document.querySelector("#cell-"+i+" .tile span").style.color = colors[""+grid[i]][0];
-					document.querySelector("#cell-"+i+" .tile span").style.fontSize = "calc("+colors[""+grid[i]][2]+"%)";
+					document.querySelector("#cell-"+i+" .tile span").style.fontSize = "calc("+colors[""+grid[i]][2]+"px/10000*1400)";
 					document.querySelector("#cell-"+i+" .tile").style.background = colors[""+grid[i]][1];
 				} else {
 					document.querySelector("#cell-"+i+" .tile span").style.color = colors["other"][0];
-					document.querySelector("#cell-"+i+" .tile span").style.fontSize = "calc("+colors["other"][2]+"%)";
+					document.querySelector("#cell-"+i+" .tile span").style.fontSize = "calc("+colors["other"][2]+"px/10000*1400)";
 					document.querySelector("#cell-"+i+" .tile").style.background = colors["other"][1];
 				}
 			}
@@ -210,7 +209,6 @@ var down = function(event, complete) {
 		for (j=3-new_condense.length; j>=0; j--) grid[j*4+i] = 0;
 	}
 	if (JSON.stringify(temp)!=JSON.stringify(grid) && complete) {
-		console.log(temp, grid, temp!=grid);
 		add_tile();
 		update_graphics();
 	}
