@@ -1,12 +1,12 @@
 var i, j, k;
-var grid = [0, 16, 128, 1024,
+var grid = [2, 16, 128, 1024,
             0, 0, 0, 0,
             0, 0, 0, 0,
             0, 0, 0, 0];
-var one_digit_size = 4;
-var two_digit_size = 3;
-var three_digit_size = 2.75;
-var four_digit_size = 2;
+var one_digit_size = 400;
+var two_digit_size = 300;
+var three_digit_size = 275;
+var four_digit_size = 200;
 var colors = {
 	"2":["#776e65", "#eee4da", one_digit_size],
 	"4":["#776e65","#ede0c8", one_digit_size],
@@ -30,14 +30,29 @@ var update_graphics = function() {
 			/* Set number */
 			document.querySelector("#cell-"+i+" .tile span").textContent = grid[i];
 			/* Set text-color & background color & fontsize */
-			if ((""+grid[i]) in colors) {
-				document.querySelector("#cell-"+i+" .tile span").style.color = colors[""+grid[i]][0];
-				document.querySelector("#cell-"+i+" .tile span").style.fontSize = ""+colors[""+grid[i]][2]+"vw";
-				document.querySelector("#cell-"+i+" .tile").style.background = colors[""+grid[i]][1];
+			var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+			var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+			console.log(vw);
+			if (vw >= 992) {
+				if ((""+grid[i]) in colors) {
+					document.querySelector("#cell-"+i+" .tile span").style.color = colors[""+grid[i]][0];
+					document.querySelector("#cell-"+i+" .tile span").style.fontSize = "calc("+colors[""+grid[i]][2]+"%)";
+					document.querySelector("#cell-"+i+" .tile").style.background = colors[""+grid[i]][1];
+				} else {
+					document.querySelector("#cell-"+i+" .tile span").style.color = colors["other"][0];
+					document.querySelector("#cell-"+i+" .tile span").style.fontSize = "calc("+colors["other"][2]+"%)";
+					document.querySelector("#cell-"+i+" .tile").style.background = colors["other"][1];
+				}
 			} else {
-				document.querySelector("#cell-"+i+" .tile span").style.color = colors["other"][0];
-				document.querySelector("#cell-"+i+" .tile span").style.fontSize = ""+colors["other"][2]+"vw";
-				document.querySelector("#cell-"+i+" .tile").style.background = colors["other"][1];
+				if ((""+grid[i]) in colors) {
+					document.querySelector("#cell-"+i+" .tile span").style.color = colors[""+grid[i]][0];
+					document.querySelector("#cell-"+i+" .tile span").style.fontSize = "calc("+colors[""+grid[i]][2]+"%)";
+					document.querySelector("#cell-"+i+" .tile").style.background = colors[""+grid[i]][1];
+				} else {
+					document.querySelector("#cell-"+i+" .tile span").style.color = colors["other"][0];
+					document.querySelector("#cell-"+i+" .tile span").style.fontSize = "calc("+colors["other"][2]+"%)";
+					document.querySelector("#cell-"+i+" .tile").style.background = colors["other"][1];
+				}
 			}
 		} else {
 			document.querySelector("#cell-"+i).innerHTML = "";
@@ -79,7 +94,7 @@ var left = function(event, complete) {
 		for (j=0; j<new_condense.length; j++) grid[i*4 + j] = new_condense[j];
 		for (j=new_condense.length; j<4; j++) grid[i*4 + j] = 0;
 	}
-	if (temp!=grid && complete) {
+	if (JSON.stringify(temp)!=JSON.stringify(grid) && complete) {
 		add_tile();
 		update_graphics();
 	}
@@ -97,7 +112,6 @@ var right = function(event, complete) {
 			if (grid[i*4+j]==0) continue; 
 			condense[condense.length] = grid[i*4+j];
 		}
-		console.log("HERE");
 		var counter = 1;
 		while (true) {
 			if (counter >= condense.length+1) break;
@@ -118,18 +132,89 @@ var right = function(event, complete) {
 		for (j=3; j>3-new_condense.length; j--) grid[i*4 + j] = new_condense[3-j];
 		for (j=3-new_condense.length; j>=0; j--) grid[i*4 + j] = 0;
 	}
-	if (temp!=grid && complete) {
-		console.log(temp, grid, temp!=grid);
+	if (JSON.stringify(temp)!=JSON.stringify(grid) && complete) {
 		add_tile();
 		update_graphics();
 	}
 	return temp!=grid;
 }
-var up = function() {
-	
+var up = function(event, complete) {
+	if (complete==undefined) {
+		complete=true;
+	}
+	var temp = Array.from(grid);
+	for (i=0; i<4; i++) { // for each column
+		var condense = [];
+		var new_condense = [];
+		for (j=0; j<4; j++) {
+			if (grid[j*4+i]==0) continue; 
+			condense[condense.length] = grid[j*4+i];
+		}
+		var counter = 1;
+		while (true) {
+			if (counter >= condense.length+1) break;
+			if (counter == condense.length) {
+				new_condense[new_condense.length] = condense[counter-1];
+				counter++;
+			} else {
+				if (condense[counter]==condense[counter-1]) {
+					new_condense[new_condense.length] = 2*condense[counter];
+					// ---update score here
+					counter += 2;
+				} else {
+					new_condense[new_condense.length] = condense[counter-1]
+					counter++;
+				}
+			}
+		}
+		for (j=0; j<new_condense.length; j++) grid[j*4+i] = new_condense[j];
+		for (j=new_condense.length; j<4; j++) grid[j*4+i] = 0;
+	}
+	if (JSON.stringify(temp)!=JSON.stringify(grid) && complete) {
+		add_tile();
+		update_graphics();
+	}
+	return temp!=grid;
 }
-var down = function() {
-	
+var down = function(event, complete) {
+	if (complete==undefined) {
+		complete=true;
+	}
+	var temp = Array.from(grid);
+	for (i=0; i<4; i++) { // for each row
+		var condense = [];
+		var new_condense = [];
+		for (j=3; j>=0; j--) {
+			if (grid[j*4+i]==0) continue; 
+			condense[condense.length] = grid[j*4+i];
+		}
+		console.log("HERE");
+		var counter = 1;
+		while (true) {
+			if (counter >= condense.length+1) break;
+			if (counter == condense.length) {
+				new_condense[new_condense.length] = condense[counter-1];
+				counter++;
+			} else {
+				if (condense[counter]==condense[counter-1]) {
+					new_condense[new_condense.length] = 2*condense[counter];
+					// ---update score here
+					counter += 2;
+				} else {
+					new_condense[new_condense.length] = condense[counter-1]
+					counter++;
+				}
+			}
+		}
+		for (j=3; j>3-new_condense.length; j--) grid[j*4+i] = new_condense[3-j];
+		for (j=3-new_condense.length; j>=0; j--) grid[j*4+i] = 0;
+	}
+	if (JSON.stringify(temp)!=JSON.stringify(grid) && complete) {
+		console.log(temp, grid, temp!=grid);
+		add_tile();
+		update_graphics();
+	}
+	return temp!=grid;
 }
 var add_tile = function() {
 	var num_value = [2, 2, 2, 2, 2, 2, 2, 2, 2, 4][Math.floor(Math.random()*10)];
