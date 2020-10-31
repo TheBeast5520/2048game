@@ -4,7 +4,7 @@ var grid = [0, 0, 0, 0,
             0, 0, 0, 0,
             0, 0, 0, 0];
 var one_digit_size = 375;
-var two_digit_size = 300;
+var two_digit_size  = 300;
 var three_digit_size = 275;
 var four_digit_size = 200;
 var colors = {
