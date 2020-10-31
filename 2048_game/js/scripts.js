@@ -47,7 +47,10 @@ var update_graphics = function() {
 
 update_graphics();
 
-var left = function(complete=true) {
+var left = function(event, complete) {
+	if (complete==undefined) {
+		complete=true;
+	}
 	var temp = Array.from(grid);
 	for (i=0; i<4; i++) { // for each row
 		var condense = [];
@@ -76,14 +79,51 @@ var left = function(complete=true) {
 		for (j=0; j<new_condense.length; j++) grid[i*4 + j] = new_condense[j];
 		for (j=new_condense.length; j<4; j++) grid[i*4 + j] = 0;
 	}
-	if (temp==grid && complete) {
+	if (temp!=grid && complete) {
 		add_tile();
 		update_graphics();
 	}
-	return temp==grid;
+	return temp!=grid;
 }
-var right = function() {
-	
+var right = function(event, complete) {
+	if (complete==undefined) {
+		complete=true;
+	}
+	var temp = Array.from(grid);
+	for (i=0; i<4; i++) { // for each row
+		var condense = [];
+		var new_condense = [];
+		for (j=3; j>=0; j--) {
+			if (grid[i*4+j]==0) continue; 
+			condense[condense.length] = grid[i*4+j];
+		}
+		console.log("HERE");
+		var counter = 1;
+		while (true) {
+			if (counter >= condense.length+1) break;
+			if (counter == condense.length) {
+				new_condense[new_condense.length] = condense[counter-1];
+				counter++;
+			} else {
+				if (condense[counter]==condense[counter-1]) {
+					new_condense[new_condense.length] = 2*condense[counter];
+					// ---update score here
+					counter += 2;
+				} else {
+					new_condense[new_condense.length] = condense[counter-1]
+					counter++;
+				}
+			}
+		}
+		for (j=3; j>3-new_condense.length; j--) grid[i*4 + j] = new_condense[3-j];
+		for (j=3-new_condense.length; j>=0; j--) grid[i*4 + j] = 0;
+	}
+	if (temp!=grid && complete) {
+		console.log(temp, grid, temp!=grid);
+		add_tile();
+		update_graphics();
+	}
+	return temp!=grid;
 }
 var up = function() {
 	
