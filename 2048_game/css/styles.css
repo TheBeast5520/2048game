@@ -91,10 +91,10 @@
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
-	#grid-2048 {
-		width: 350px;
-		height:350px;
-	}
+  #grid-2048 {
+  	width: 350px;
+  	height:350px;
+  }
   #buttons {
 	width: 350px;
   }

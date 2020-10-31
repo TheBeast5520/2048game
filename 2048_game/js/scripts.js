@@ -1,12 +1,12 @@
 var i, j, k;
-var grid = [0, 0, 0, 0,
+var grid = [0, 16, 128, 1024,
             0, 0, 0, 0,
             0, 0, 0, 0,
             0, 0, 0, 0];
-var one_digit_size = 60;
-var two_digit_size = 50;
-var three_digit_size = 45;
-var four_digit_size = 40;
+var one_digit_size = 4;
+var two_digit_size = 3;
+var three_digit_size = 2.75;
+var four_digit_size = 2;
 var colors = {
 	"2":["#776e65", "#eee4da", one_digit_size],
 	"4":["#776e65","#ede0c8", one_digit_size],
@@ -32,11 +32,11 @@ var update_graphics = function() {
 			/* Set text-color & background color & fontsize */
 			if ((""+grid[i]) in colors) {
 				document.querySelector("#cell-"+i+" .tile span").style.color = colors[""+grid[i]][0];
-				document.querySelector("#cell-"+i+" .tile span").style.fontSize = ""+colors[""+grid[i]][2]+"px";
+				document.querySelector("#cell-"+i+" .tile span").style.fontSize = ""+colors[""+grid[i]][2]+"vw";
 				document.querySelector("#cell-"+i+" .tile").style.background = colors[""+grid[i]][1];
 			} else {
 				document.querySelector("#cell-"+i+" .tile span").style.color = colors["other"][0];
-				document.querySelector("#cell-"+i+" .tile span").style.fontSize = ""+colors["other"][2]+"px";
+				document.querySelector("#cell-"+i+" .tile span").style.fontSize = ""+colors["other"][2]+"vw";
 				document.querySelector("#cell-"+i+" .tile").style.background = colors["other"][1];
 			}
 		} else {
