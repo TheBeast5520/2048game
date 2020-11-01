@@ -13,11 +13,20 @@
 
 /* Dropdown */
 
-#accordian, #main-content, footer, #grid-2048 {
+#accordian, #main-content, footer, #grid-2048, #main-content .top-btn-row {
 	margin-top: 30px;
 }
 
 /* 2048 game */
+
+.top-btn-row {
+	width: 25vw;
+	margin: auto;
+}
+
+#restart {
+	height: 24px;
+}
 
 #grid-2048 {
 	width: 25vw;
@@ -56,7 +65,7 @@
 #buttons {
 	width: 25vw;
 	padding: 0px;
-	margin-top: 15px;
+	margin-top: 30px;
 	margin-left: auto;
 	margin-right: auto;
 	left: 50%;
@@ -91,7 +100,7 @@
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
-  #grid-2048 {
+  #grid-2048, .top-btn-row {
   	width: 350px;
   	height:350px;
   }
@@ -102,7 +111,7 @@
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) { 
-  #grid-2048 {
+  #grid-2048, .top-btn-row {
 	width: 350px;
 	height:350px;
   }
@@ -113,15 +122,12 @@
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-  #grid-2048 {
+  #grid-2048, .top-btn-row {
 	width: 350px;
 	height:350px;
   }
   #buttons {
 	width: 350px;
-  }
-  #grid-2048 {
-  	font-size: ;
   }
 }
 

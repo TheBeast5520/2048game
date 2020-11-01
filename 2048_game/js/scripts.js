@@ -235,6 +235,61 @@ var start_game = function() {
 	update_graphics();
 }
 
+function swipedetect(el, callback){
+  
+    var touchsurface = el,
+    swipedir,
+    startX,
+    startY,
+    distX,
+    distY,
+    threshold = 150,
+    restraint = 100,
+    allowedTime = 300, 
+    elapsedTime,
+    startTime,
+    handleswipe = callback || function(swipedir){}
+  
+    touchsurface.addEventListener('touchstart', function(e){
+        var touchobj = e.changedTouches[0]
+        swipedir = 'none'
+        dist = 0
+        startX = touchobj.pageX
+        startY = touchobj.pageY
+        startTime = new Date().getTime() // record time when finger first makes contact with surface
+        e.preventDefault()
+    }, false)
+  
+    touchsurface.addEventListener('touchmove', function(e){
+        e.preventDefault() // prevent scrolling when inside DIV
+    }, false)
+  
+    touchsurface.addEventListener('touchend', function(e){
+        var touchobj = e.changedTouches[0]
+        distX = touchobj.pageX - startX 
+        distY = touchobj.pageY - startY 
+        elapsedTime = new Date().getTime() - startTime 
+        if (elapsedTime <= allowedTime){ 
+            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ 
+                swipedir = (distX < 0)? 'left' : 'right' 
+            }
+            else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ 
+                swipedir = (distY < 0)? 'up' : 'down'
+            }
+        }
+        handleswipe(swipedir)
+        e.preventDefault()
+    }, false)
+}
+
+var el = document.getElementById('grid-2048')
+swipedetect(el, function(swipedir){
+    if (swipedir =='left') left();
+    else if (swipedir =='right') right();
+    else if (swipedir =='up') up();
+    else down();
+})
+
 var end_game = function() {
 	for (i=0; i<16; i++) {
 		grid[i]=0;
