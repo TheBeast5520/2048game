@@ -29,6 +29,8 @@
 }
 #score:hover {
 	background: var(--primary);
+	cursor: default;
+	user-select: auto;
 }
 
 #grid-2048 {
@@ -108,7 +110,8 @@
   	height:350px;
   }
   .top-btn-row {
-  	width: 350px;
+  	width: 350px+
+  	;
   }
   #buttons {
 	width: 350px;
@@ -122,7 +125,8 @@
 	height:350px;
   }
   .top-btn-row {
-  	width: 350px;
+  	width: 350px+
+  	;
   }
   #buttons {
 	width: 350px;
@@ -136,7 +140,8 @@
 	height:350px;
   }
   .top-btn-row {
-  	width: 350px;
+  	width: 350px+
+  	;
   }
   #buttons {
 	width: 350px;
