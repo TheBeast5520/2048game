@@ -22,10 +22,13 @@
 .top-btn-row {
 	width: 25vw;
 	margin: auto;
-}
-
-#restart {
 	height: 40px;
+}
+#restart, #score {
+	height: 40px;
+}
+#score:hover {
+	background: var(--primary);
 }
 
 #grid-2048 {

@@ -21,6 +21,7 @@ var colors = {
 	"2048":["#f9f6f2","#edc22e", four_digit_size],
 	"other":["#f9f6f2","#3c3a32", four_digit_size]
 }
+var score=0;
 
 var update_graphics = function() {
 	for (i=0; i<16; i++) {
@@ -56,6 +57,7 @@ var update_graphics = function() {
 			document.querySelector("#cell-"+i).innerHTML = "";
 		}
 	}
+	document.querySelector("#score").innerHTML = "Score: " + score;
 }
 
 update_graphics();
@@ -81,7 +83,7 @@ var left = function(event, complete) {
 			} else {
 				if (condense[counter]==condense[counter-1]) {
 					new_condense[new_condense.length] = 2*condense[counter];
-					// ---update score here
+					score += 2*condense[counter];
 					counter += 2;
 				} else {
 					new_condense[new_condense.length] = condense[counter-1]
@@ -119,7 +121,7 @@ var right = function(event, complete) {
 			} else {
 				if (condense[counter]==condense[counter-1]) {
 					new_condense[new_condense.length] = 2*condense[counter];
-					// ---update score here
+					score += 2*condense[counter];
 					counter += 2;
 				} else {
 					new_condense[new_condense.length] = condense[counter-1]
@@ -157,7 +159,7 @@ var up = function(event, complete) {
 			} else {
 				if (condense[counter]==condense[counter-1]) {
 					new_condense[new_condense.length] = 2*condense[counter];
-					// ---update score here
+					score += 2*condense[counter];
 					counter += 2;
 				} else {
 					new_condense[new_condense.length] = condense[counter-1]
@@ -195,7 +197,7 @@ var down = function(event, complete) {
 			} else {
 				if (condense[counter]==condense[counter-1]) {
 					new_condense[new_condense.length] = 2*condense[counter];
-					// ---update score here
+					score += 2*condense[counter];
 					counter += 2;
 				} else {
 					new_condense[new_condense.length] = condense[counter-1]
@@ -225,10 +227,6 @@ var add_tile = function() {
 }
 
 var start_game = function() {
-	document.querySelector("#left").addEventListener('click', left);
-	document.querySelector("#right").addEventListener('click', right);
-	document.querySelector("#up").addEventListener('click', up);
-	document.querySelector("#down").addEventListener('click', down);
 	add_tile();
 	update_graphics();
 }
@@ -289,15 +287,46 @@ swipedetect(el, function(swipedir){
     else if (swipedir == 'down') down();
 })
 
-var end_game = function() {
+// document.querySelector("#left").addEventListener('click', left);
+// document.querySelector("#right").addEventListener('click', right);
+// document.querySelector("#up").addEventListener('click', up);
+// document.querySelector("#down").addEventListener('click', down);
+
+document.onkeydown = function(e) {
+    switch(e.which) {
+        case 37: // left
+        	left();
+        break;
+
+        case 38: // up
+        	up();
+        break;
+
+        case 39: // right
+        	right();
+        break;
+
+        case 40: // down
+        	down();
+        break;
+
+        default: return; // exit this handler for other keys
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+};
+
+var restart_game = function() {
 	for (i=0; i<16; i++) {
 		grid[i]=0;
 	}
-	update_graphics();
-	document.querySelector("#left").removeEventListener('click', left);
-	document.querySelector("#right").removeEventListener('click', right);
-	document.querySelector("#up").removeEventListener('click', up);
-	document.querySelector("#down").removeEventListener('click', down);
+	score=0;
+	add_tile();
 }
 
-start_game();
+add_tile();
+update_graphics();
+
+document.querySelector("#restart").addEventListener('click', function() {
+	restart_game();
+	update_graphics();
+})
