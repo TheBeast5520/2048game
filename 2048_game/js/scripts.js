@@ -31,7 +31,6 @@ var update_graphics = function() {
 			document.querySelector("#cell-"+i+" .tile span").textContent = grid[i];
 			/* Set text-color & background color & fontsize */
 			var vw =  Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-			console.log(vw);
 			if (vw >= 992) {
 				if ((""+grid[i]) in colors) {
 					document.querySelector("#cell-"+i+" .tile span").style.color = colors[""+grid[i]][0];
@@ -187,7 +186,6 @@ var down = function(event, complete) {
 			if (grid[j*4+i]==0) continue; 
 			condense[condense.length] = grid[j*4+i];
 		}
-		console.log("HERE");
 		var counter = 1;
 		while (true) {
 			if (counter >= condense.length+1) break;
@@ -237,31 +235,30 @@ var start_game = function() {
 
 function swipedetect(el, callback){
   
-    var touchsurface = el,
-    swipedir,
-    startX,
-    startY,
-    distX,
-    distY,
-    threshold = 150,
-    restraint = 100,
-    allowedTime = 300, 
-    elapsedTime,
-    startTime,
-    handleswipe = callback || function(swipedir){}
+    var touchsurface = el;
+    var swipedir;
+    var startX;
+    var startY;
+    var distX;
+    var distY;
+    var threshold = 100;
+    var restraint = 75;
+    var allowedTime = 300;
+    var elapsedTime;
+    var startTime;
+    var handleswipe = callback || function(swipedir){};
   
     touchsurface.addEventListener('touchstart', function(e){
-        var touchobj = e.changedTouches[0]
-        swipedir = 'none'
-        dist = 0
-        startX = touchobj.pageX
-        startY = touchobj.pageY
-        startTime = new Date().getTime() // record time when finger first makes contact with surface
-        e.preventDefault()
+        var touchobj = e.changedTouches[0];
+        swipedir = 'none';
+        startX = touchobj.pageX;
+        startY = touchobj.pageY;
+        startTime = new Date().getTime();
+        e.preventDefault();
     }, false)
   
     touchsurface.addEventListener('touchmove', function(e){
-        e.preventDefault() // prevent scrolling when inside DIV
+        e.preventDefault()
     }, false)
   
     touchsurface.addEventListener('touchend', function(e){
@@ -269,12 +266,14 @@ function swipedetect(el, callback){
         distX = touchobj.pageX - startX 
         distY = touchobj.pageY - startY 
         elapsedTime = new Date().getTime() - startTime 
+        console.log(distX, distY);
         if (elapsedTime <= allowedTime){ 
             if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ 
-                swipedir = (distX < 0)? 'left' : 'right' 
-            }
-            else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ 
-                swipedir = (distY < 0)? 'up' : 'down'
+                swipedir = (distX < 0)? 'left' : 'right';
+            } else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ 
+                swipedir = (distY < 0)? 'up' : 'down';
+            } else {
+            	swipedir = 'none';
             }
         }
         handleswipe(swipedir)
@@ -287,7 +286,7 @@ swipedetect(el, function(swipedir){
     if (swipedir =='left') left();
     else if (swipedir =='right') right();
     else if (swipedir =='up') up();
-    else down();
+    else if (swipedir == 'down') down();
 })
 
 var end_game = function() {
