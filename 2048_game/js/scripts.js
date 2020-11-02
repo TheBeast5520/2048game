@@ -362,7 +362,7 @@ function signOut() {
     auth2.signOut().then(function () {
         console.log('User signed out.');
     });
-    document.querySelector("#sign-out").style.display = "none";
+    document.querySelector("#sign-out").style.visibility = "hidden";
 }        
 
 var userChanged = function (user) {
@@ -374,9 +374,10 @@ var userChanged = function (user) {
 window.onload = function() {
 	if (gapi.auth2.init().isSignedIn.get()) {
 		document.querySelector("#sign-out").style.background = gapi.auth2.init().currentUser.get().getBasicProfile.getImageUrl();
+		document.querySelector("#sign-out").style.visibility = "visible";
 	// console.log(gapi.auth2.init().currentUser.get().getImageUrl());
 	} else {
-		document.querySelector("#sign-out").style.display = "none";
+		document.querySelector("#sign-out").style.visibility = "hidden";
 	}
 }
 
@@ -385,7 +386,7 @@ function signOut() {
 	auth2.signOut().then(function () {
 	    console.log('User signed out.');
 	});
-	document.querySelector("#sign-out").background = "none";
+	document.querySelector("#sign-out").style.visibility = "hidden";
 }
 
 function onSignIn(googleUser) {
@@ -393,6 +394,7 @@ function onSignIn(googleUser) {
     profile = googleUser.getBasicProfile();
     // console.log(auth2.currentUser.get().getImageUrl());
     document.querySelector("#sign-out").style.background = profile.getImageUrl();
+    document.querySelector("#sign-out").style.visibility = "visible";
     // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
     // console.log('Full Name: ' + profile.getName());
     // console.log('Given Name: ' + profile.getGivenName());
