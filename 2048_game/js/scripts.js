@@ -340,7 +340,7 @@ var auth2;
 var googleUser; // The current user
 
 gapi.load('auth2', function(){
-    auth2 = gapi.auth2.getAuthInstance();
+    auth2 = gapi.auth2.init();
     // auth2.attachClickHandler('signin-button', {}, onSuccess, onFailure);
 });   
 
@@ -371,16 +371,16 @@ var userChanged = function (user) {
 };
 
 window.onload = function() {
-	if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-		document.querySelector("#sign-out").style.background = auth2.currentUser.get().getImageUrl();
-	console.log(auth2.currentUser.get().getImageUrl());
+	if (gapi.auth2.init().isSignedIn.get()) {
+		document.querySelector("#sign-out").style.background = gapi.auth2.init().currentUser.get().getImageUrl();
+	console.log(gapi.auth2.init().currentUser.get().getImageUrl());
 	} else {
 		document.querySelector("#sign-out").style.display = "none";
 	}
 }
 
 function signOut() {
-	var auth2 = gapi.auth2.getAuthInstance();
+	var auth2 = gapi.auth2.init();
 	auth2.signOut().then(function () {
 	    console.log('User signed out.');
 	});
