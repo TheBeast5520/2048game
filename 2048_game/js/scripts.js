@@ -371,11 +371,12 @@ var userChanged = function (user) {
 };
 
 window.onload = function() {
-	// if (auth2.isSignedIn.get()) {
-	// document.querySelector("#sign-out").style.background = gapi.auth2.getAuthInstance().currentUser.get().getImageUrl();
-	// } else {
-	// 	document.querySelector("#sign-out").style.display = "none";
-	// }
+	if (auth2.isSignedIn.get()) {
+		document.querySelector("#sign-out").style.background = auth2.currentUser.get().getImageUrl();
+	console.log(auth2.currentUser.get().getImageUrl());
+	} else {
+		document.querySelector("#sign-out").style.display = "none";
+	}
 }
 
 function signOut() {
@@ -389,7 +390,8 @@ function signOut() {
 function onSignIn(googleUser) {
     // Useful data for your client-side scripts:
     googleUser = googleUser.getBasicProfile();
-    document.querySelector("#sign-out").style.background = gapi.auth2.getAuthInstance().currentUser.get().getImageUrl();
+    console.log(auth2.currentUser.get().getImageUrl());
+    document.querySelector("#sign-out").style.background = auth2.currentUser.get().getImageUrl();
     // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
     // console.log('Full Name: ' + profile.getName());
     // console.log('Given Name: ' + profile.getGivenName());
