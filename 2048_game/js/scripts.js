@@ -391,7 +391,7 @@ function signOut() {
 function onSignIn(googleUser) {
     // Useful data for your client-side scripts:
     profile = googleUser.getBasicProfile();
-    console.log(auth2.currentUser.get().getImageUrl());
+    // console.log(auth2.currentUser.get().getImageUrl());
     document.querySelector("#sign-out").style.background = profile.getImageUrl();
     // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
     // console.log('Full Name: ' + profile.getName());
