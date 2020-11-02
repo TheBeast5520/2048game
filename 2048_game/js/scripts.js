@@ -373,8 +373,8 @@ var userChanged = function (user) {
 
 window.onload = function() {
 	if (gapi.auth2.init().isSignedIn.get()) {
-		document.querySelector("#sign-out").style.background = gapi.auth2.init().currentUser.get().getImageUrl();
-	console.log(gapi.auth2.init().currentUser.get().getImageUrl());
+		document.querySelector("#sign-out").style.background = gapi.auth2.init().currentUser.get().getBasicProfile.getImageUrl();
+	// console.log(gapi.auth2.init().currentUser.get().getImageUrl());
 	} else {
 		document.querySelector("#sign-out").style.display = "none";
 	}
