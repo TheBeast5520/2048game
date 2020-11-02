@@ -367,13 +367,13 @@ function signOut() {
 
 var userChanged = function (user) {
     if(user.getId()){
-        document.querySelector("#sign-out").style.background = user.getImageUrl();
+        document.querySelector("#sign-out").style.backgroundImage = "url(" + user.getImageUrl() + ")";
     }
 };
 
 window.onload = function() {
 	if (gapi.auth2.init().isSignedIn.get()) {
-		document.querySelector("#sign-out").style.background = gapi.auth2.init().currentUser.get().getBasicProfile.getImageUrl();
+		document.querySelector("#sign-out").style.backgroundImage = "url(" + gapi.auth2.init().currentUser.get().getBasicProfile.getImageUrl() + ")";
 		document.querySelector("#sign-out").style.visibility = "visible";
 	// console.log(gapi.auth2.init().currentUser.get().getImageUrl());
 	} else {
@@ -393,7 +393,7 @@ function onSignIn(googleUser) {
     // Useful data for your client-side scripts:
     profile = googleUser.getBasicProfile();
     // console.log(auth2.currentUser.get().getImageUrl());
-    document.querySelector("#sign-out").style.background = profile.getImageUrl();
+    document.querySelector("#sign-out").style.backgroundImage = "url(" + profile.getImageUrl() + ")";
     document.querySelector("#sign-out").style.visibility = "visible";
     // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
     // console.log('Full Name: ' + profile.getName());
