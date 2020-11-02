@@ -106,7 +106,9 @@
 /* Google Sign In */
 
 #sign-out {
-	
+	border-radius: 50%;
+	height: 30px;
+	width: 30px;
 }
 
 /* Extra small devices (portrait phones, less than 576px) */

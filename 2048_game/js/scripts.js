@@ -342,7 +342,7 @@ var googleUser; // The current user
 gapi.load('auth2', function(){
     auth2 = gapi.auth2.getAuthInstance();
     // auth2.attachClickHandler('signin-button', {}, onSuccess, onFailure);
-});  
+});   
 
 // var signinChanged = function (val) {
 //     console.log('Signin state changed to ', val);
@@ -371,7 +371,7 @@ var userChanged = function (user) {
 };
 
 window.onload = function() {
-	if (auth2.isSignedIn.get()) {
+	if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
 		document.querySelector("#sign-out").style.background = auth2.currentUser.get().getImageUrl();
 	console.log(auth2.currentUser.get().getImageUrl());
 	} else {
