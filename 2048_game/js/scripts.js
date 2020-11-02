@@ -337,7 +337,7 @@ document.querySelector("#restart").addEventListener('click', function() {
 /* Google Sign in */
 
 var auth2;
-var googleUser; // The current user
+var profile; // The current user
 
 gapi.load('auth2', function(){
     auth2 = gapi.auth2.init();
@@ -362,6 +362,7 @@ function signOut() {
     auth2.signOut().then(function () {
         console.log('User signed out.');
     });
+    document.querySelector("#sign-out").style.display = "none";
 }        
 
 var userChanged = function (user) {
@@ -389,9 +390,9 @@ function signOut() {
 
 function onSignIn(googleUser) {
     // Useful data for your client-side scripts:
-    googleUser = googleUser.getBasicProfile();
+    profile = googleUser.getBasicProfile();
     console.log(auth2.currentUser.get().getImageUrl());
-    document.querySelector("#sign-out").style.background = auth2.currentUser.get().getImageUrl();
+    document.querySelector("#sign-out").style.background = profile.getImageUrl();
     // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
     // console.log('Full Name: ' + profile.getName());
     // console.log('Given Name: ' + profile.getGivenName());
