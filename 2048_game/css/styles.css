@@ -109,6 +109,8 @@
 	border-radius: 50%;
 	height: 30px;
 	width: 30px;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 /* Extra small devices (portrait phones, less than 576px) */
